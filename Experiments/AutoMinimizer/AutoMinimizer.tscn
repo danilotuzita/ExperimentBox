@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Experiments/AutoMinimizer.gd" type="Script" id=1]
-[ext_resource path="res://Experiments/BlueScreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Experiments/AutoMinimizer/AutoMinimizer.gd" type="Script" id=1]
+[ext_resource path="res://Experiments/AutoMinimizer/BlueScreen.tscn" type="PackedScene" id=2]
 
 [node name="AutoMinimizer" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,13 +16,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
-[node name="LabelTick" type="Timer" parent="."]
-one_shot = true
-
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
 margin_right = 221.0
@@ -33,4 +26,9 @@ __meta__ = {
 
 [node name="BlueScreen" parent="." instance=ExtResource( 2 )]
 visible = false
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[node name="MinimizerTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="error_collection_completed" from="BlueScreen" to="." method="_on_BlueScreen_error_collection_completed"]
+[connection signal="timeout" from="MinimizerTimer" to="." method="_on_MinimizerTimer_timeout"]
