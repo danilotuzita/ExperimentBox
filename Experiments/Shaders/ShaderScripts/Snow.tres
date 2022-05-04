@@ -22,7 +22,7 @@ void fragment() {
 	
 	float snow_mask = COLOR.r;
 	
-	ALBEDO = mix(dirt_a, snow_a, snow_mask);
+	ALBEDO = vec3(snow_mask, 0, 0); // mix(dirt_a, snow_a, snow_mask);
 	NORMALMAP = mix(dirt_n, snow_n, snow_mask);
 	ROUGHNESS = mix(dirt_r, snow_r, snow_mask);
 }

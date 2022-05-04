@@ -1,20 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Experiments/Shaders/ShaderScripts/Snow.tres" type="Material" id=1]
-
-[sub_resource type="PlaneMesh" id=1]
-material = ExtResource( 1 )
-size = Vector2( 64, 64 )
-subdivide_width = 64
-subdivide_depth = 64
+[ext_resource path="res://Experiments/Shaders/Meshes/terrain.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Experiments/Shaders/ShaderScripts/Snow.tres" type="Material" id=2]
 
 [node name="World" type="Spatial"]
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = null
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 64, 64 )
 
 [node name="Sprite" type="Sprite" parent="Viewport"]
+
+[node name="terrain" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
