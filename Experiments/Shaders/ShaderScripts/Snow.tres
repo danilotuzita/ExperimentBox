@@ -1,12 +1,50 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=2]
 
-[ext_resource path="res://Experiments/Shaders/ShaderScripts/Snow.shader" type="Shader" id=1]
 [ext_resource path="res://Experiments/Shaders/Textures/Snow.jpg" type="Texture" id=2]
 [ext_resource path="res://Experiments/Shaders/Textures/Grass.jpg" type="Texture" id=3]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform sampler2D snow_albedo : hint_albedo;
+uniform sampler2D snow_normal;
+uniform sampler2D snow_roughness;
+uniform sampler2D dirt_albedo : hint_albedo;
+uniform sampler2D dirt_normal;
+uniform sampler2D dirt_roughness;
+uniform sampler2D dynamic_snow_mask;
+uniform float snow_uv_scale : hint_range(0.5, 10.0);
+uniform float dirt_uv_scale : hint_range(0.5, 10.0);
+uniform float snow_height = .5;
+
+void fragment() {
+	vec2 uv = UV * snow_uv_scale;
+	vec3 snow_a = texture(snow_albedo, uv).rgb;
+	vec3 snow_n = texture(snow_normal, uv).rgb;
+	float snow_r = texture(snow_roughness, uv).r;
+	uv = UV * dirt_uv_scale;
+	vec3 dirt_a = texture(dirt_albedo, uv).rgb;
+	vec3 dirt_n = texture(dirt_normal, uv).rgb;
+	float dirt_r = texture(dirt_roughness, uv).r;
+	
+	float snow_mask = COLOR.r;
+	snow_mask *= texture(dynamic_snow_mask, UV).r;
+	
+	ALBEDO = mix(dirt_a, snow_a, snow_mask);
+	NORMALMAP = mix(dirt_n, snow_n, snow_mask);
+	ROUGHNESS = mix(dirt_r, snow_r, snow_mask);
+}
+
+void vertex() {
+	float snow_mask = COLOR.r;
+	snow_mask *= texture(dynamic_snow_mask, UV).r;
+	VERTEX.y += snow_mask * snow_height;
+}"
+
 [resource]
-shader = ExtResource( 1 )
+shader = SubResource( 1 )
 shader_param/snow_uv_scale = 7.0
 shader_param/dirt_uv_scale = 5.0
+shader_param/snow_height = 0.5
 shader_param/snow_albedo = ExtResource( 2 )
 shader_param/dirt_albedo = ExtResource( 3 )

@@ -25,4 +25,4 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 4, 0, 0, 0, 3.87658, 0.985966, 0, -0.985966, 3.87658, 0, 2.91299, 8.35599 )
+transform = Transform( 1, 0, 0, 0, 0.907279, 0.420529, 0, -0.420529, 0.907279, 0, 2.91299, 5.38426 )
