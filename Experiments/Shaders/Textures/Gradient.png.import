@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Gradient.jpg-ce98c7e2fa851fda33b0d3686c3ada10.stex"
+path="res://.import/Gradient.png-89e41b93f6fdfc64e1bd97b7f8486e2d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Experiments/Shaders/Textures/Gradient.jpg"
-dest_files=[ "res://.import/Gradient.jpg-ce98c7e2fa851fda33b0d3686c3ada10.stex" ]
+source_file="res://Experiments/Shaders/Textures/Gradient.png"
+dest_files=[ "res://.import/Gradient.png-89e41b93f6fdfc64e1bd97b7f8486e2d.stex" ]
 
 [params]
 

@@ -29,6 +29,6 @@ func _physics_process(delta):
 	velocity.y -= fall_acceleration * delta
 
 	# print_debug(rotation.y)
-	var lin_vel = move_and_slide(velocity.rotated(Vector3.UP, rotation.y), Vector3.UP, true)
+	var _lin_vel = move_and_slide(velocity.rotated(Vector3.UP, rotation.y), Vector3.UP, true)
 
 	#mesh.rotate(lin_vel.normalized(), lin_vel.length() * delta * speed)

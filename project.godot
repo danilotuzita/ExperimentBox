@@ -86,6 +86,7 @@ window/stretch/aspect="keep"
 [global]
 
 color=false
+trim=false
 
 [importer_defaults]
 
